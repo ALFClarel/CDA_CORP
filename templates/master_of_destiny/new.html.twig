@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MasterOfDestiny{% endblock %}
+
+{% block body %}
+    <h1>Create new MasterOfDestiny</h1>
+
+    {{ include('master_of_destiny/_form.html.twig') }}
+
+    <a href="{{ path('app_master_of_destiny_index') }}">back to list</a>
+{% endblock %}

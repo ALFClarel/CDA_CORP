@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MasterOfDestiny index{% endblock %}
+
+{% block body %}
+    <h1>MasterOfDestiny index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Pseudo</th>
+                <th>Password</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for master_of_destiny in master_of_destinies %}
+            <tr>
+                <td>{{ master_of_destiny.id }}</td>
+                <td>{{ master_of_destiny.name }}</td>
+                <td>{{ master_of_destiny.pseudo }}</td>
+                <td>{{ master_of_destiny.password }}</td>
+                <td>
+                    <a href="{{ path('app_master_of_destiny_show', {'id': master_of_destiny.id}) }}">show</a>
+                    <a href="{{ path('app_master_of_destiny_edit', {'id': master_of_destiny.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_master_of_destiny_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MasterOfDestiny{% endblock %}
+
+{% block body %}
+    <h1>Edit MasterOfDestiny</h1>
+
+    {{ include('master_of_destiny/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_master_of_destiny_index') }}">back to list</a>
+
+    {{ include('master_of_destiny/_delete_form.html.twig') }}
+{% endblock %}
