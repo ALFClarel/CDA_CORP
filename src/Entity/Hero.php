@@ -26,7 +26,7 @@ class Hero
     private ?string $equipment = null;
 
     #[ORM\Column]
-    private ?bool $isAvailable = null;
+    private ?bool $Available = null;
 
     #[ORM\Column]
     private ?int $energyLevel = null;
@@ -92,14 +92,14 @@ class Hero
         return $this;
     }
 
-    public function isAvailable(): ?bool
+    public function Available(): ?bool
     {
-        return $this->isAvailable;
+        return $this->Available;
     }
 
-    public function setAvailable(bool $isAvailable): static
+    public function setAvailable(bool $Available): static
     {
-        $this->isAvailable = $isAvailable;
+        $this->Available = $Available;
 
         return $this;
     }
