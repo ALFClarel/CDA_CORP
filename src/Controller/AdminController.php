@@ -10,10 +10,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/admin', name: 'admin_')]
 class AdminController extends AbstractController
 {
+
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     #[Route('/', name: 'dashboard')]
     public function dashboard(): Response
     {
@@ -36,10 +45,17 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Hash the password
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $masterOfDestiny,
+                $masterOfDestiny->getPassword() // Plain password
+            );
+            $masterOfDestiny->setPassword($hashedPassword); // Set the hashed password
+
             $entityManager->persist($masterOfDestiny);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_mod_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_app_mod_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('master_of_destiny/new.html.twig', [
@@ -65,7 +81,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_mod_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_app_mod_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('master_of_destiny/edit.html.twig', [
@@ -82,6 +98,6 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_master_of_destiny_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_app_mod_index', [], Response::HTTP_SEE_OTHER);
     }
 }

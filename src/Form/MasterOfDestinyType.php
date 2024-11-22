@@ -6,6 +6,7 @@ use App\Entity\MasterOfDestiny;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class MasterOfDestinyType extends AbstractType
 {
@@ -14,7 +15,7 @@ class MasterOfDestinyType extends AbstractType
         $builder
             ->add('name')
             ->add('pseudo')
-            ->add('password')
+            ->add('password', PasswordType::class)
         ;
     }
 

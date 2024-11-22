@@ -14,6 +14,5 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/masterofdestiny')]
 final class MasterOfDestinyController extends AbstractController
 {
-
     
 }

@@ -23,8 +23,8 @@
                 <td>{{ master_of_destiny.pseudo }}</td>
                 <td>{{ master_of_destiny.password }}</td>
                 <td>
-                    <a href="{{ path('app_master_of_destiny_show', {'id': master_of_destiny.id}) }}">show</a>
-                    <a href="{{ path('app_master_of_destiny_edit', {'id': master_of_destiny.id}) }}">edit</a>
+                    <a href="{{ path('admin_app_mod_show', {'id': master_of_destiny.id}) }}">show</a>
+                    <a href="{{ path('admin_app_mod_edit', {'id': master_of_destiny.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_master_of_destiny_new') }}">Create new</a>
+    <a href="{{ path('admin_app_mod_new') }}">Create new</a>
 {% endblock %}

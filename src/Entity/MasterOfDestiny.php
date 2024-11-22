@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use App\Repository\MasterOfDestinyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: MasterOfDestinyRepository::class)]
-class MasterOfDestiny
+class MasterOfDestiny implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
