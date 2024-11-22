@@ -4,13 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Hero;
 use App\Form\HeroType;
-use App\Entity\MasterOfDestiny;
 use App\Repository\HeroRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 #[Route('/hero')]
 final class HeroController extends AbstractController
@@ -52,17 +54,38 @@ final class HeroController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_hero_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Hero $hero, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Hero $hero, EntityManagerInterface $em,SluggerInterface $slugger,
+    #[Autowire('%kernel.project_dir%/public/images')] string $imagesDirectory): Response
     {
         $form = $this->createForm(HeroType::class, $hero);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('image_name')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $imageFile->move($imagesDirectory, $newFilename);
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $hero->setImageName($newFilename);
+
+
+            $em->flush();
 
             return $this->redirectToRoute('app_hero_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    }
         return $this->render('hero/edit.html.twig', [
             'hero' => $hero,
             'form' => $form,

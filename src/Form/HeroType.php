@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class HeroType extends AbstractType
 {
@@ -19,7 +20,7 @@ class HeroType extends AbstractType
             ->add('Available')
             ->add('energyLevel')
             ->add('biography')
-            ->add('brochure', HeroType::class, [
+            ->add('image_name', FileType::class, [
                 'label' => 'Image',
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -32,7 +33,9 @@ class HeroType extends AbstractType
                     new File([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'application/pdf',
+                            'image/jpeg',
+                            'image/png',
+                            'application/pdf', // Include appropriate mime types for your use case
                             'application/x-pdf',
                         ],
                         'mimeTypesMessage' => 'Veuillez entrer un fichier valide',
