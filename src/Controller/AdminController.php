@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/admin', name: 'admin_')]
-class AdminController extends AbstractController
+final class AdminController extends AbstractController
 {
 
     private UserPasswordHasherInterface $passwordHasher;

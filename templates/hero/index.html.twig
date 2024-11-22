@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hero index{% endblock %}
+
+{% block body %}
+    <h1>Hero index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>AlterEgo</th>
+                <th>Equipment</th>
+                <th>Available</th>
+                <th>EnergyLevel</th>
+                <th>Biography</th>
+                <th>ImageName</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hero in heroes %}
+            <tr>
+                <td>{{ hero.id }}</td>
+                <td>{{ hero.name }}</td>
+                <td>{{ hero.alterEgo }}</td>
+                <td>{{ hero.equipment }}</td>
+                <td>{{ hero.Available ? 'Yes' : 'No' }}</td>
+                <td>{{ hero.energyLevel }}</td>
+                <td>{{ hero.biography }}</td>
+                <td>{{ hero.imageName }}</td>
+                <td>{{ hero.createdAt ? hero.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_hero_show', {'id': hero.id}) }}">show</a>
+                    <a href="{{ path('app_hero_edit', {'id': hero.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_hero_new') }}">Create new</a>
+{% endblock %}
