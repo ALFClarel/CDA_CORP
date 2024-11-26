@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
-class Admin
+class Admin implements UserInterface
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -24,6 +27,21 @@ class Admin
 
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
+
+    public function eraseCredentials(): void
+    {
+        
+    }
+    
+    public function getRoles(): array
+    {
+        return ['ROLE_ADMIN'];
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->pseudo;
+    }
 
     public function getId(): ?int
     {
