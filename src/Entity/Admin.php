@@ -4,11 +4,11 @@ namespace App\Entity;
 
 use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
-class Admin implements UserInterface
+class Admin implements PasswordAuthenticatedUserInterface, UserInterface
 {
 
     #[ORM\Id]
@@ -35,7 +35,7 @@ class Admin implements UserInterface
     
     public function getRoles(): array
     {
-        return ['ROLE_ADMIN'];
+        return ['ROLE_ADMIN','ROLE_MASTER'];
     }
 
     public function getUserIdentifier(): string

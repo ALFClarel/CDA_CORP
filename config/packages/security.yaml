@@ -4,20 +4,42 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        admin_provider:
+            entity:
+                class: App\Entity\Admin
+                property: pseudo
+        mod_provider:
+            entity:
+                class: App\Entity\MasterOfDestiny
+                property: pseudo
+        list_of_provider:
+            chain:
+                providers: [admin_provider, mod_provider]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: list_of_provider
             form_login:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
             logout:
                 path: app_logout
+            custom_authenticator: App\Security\LoginAuthenticator
+            entry_point: form_login
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                # by default, the feature is enabled by checking a checkbox in the
+                # login form, uncomment the following line to always enable it.
+                #always_remember_me: true
+                # where to redirect after logout
+                # target: app_any_route
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -30,8 +52,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/hero, roles: ROLE_MASTER }
 
 when@test:
     security:

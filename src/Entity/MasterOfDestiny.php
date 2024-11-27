@@ -23,6 +23,22 @@ class MasterOfDestiny implements PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+
+    public function eraseCredentials(): void
+    {
+        
+    }
+    
+    public function getRoles(): array
+    {
+        return ['ROLE_MASTER'];
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->pseudo;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
