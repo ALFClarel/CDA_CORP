@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\MasterOfDestiny;
 use App\Form\MasterOfDestinyType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use App\Repository\MasterOfDestinyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,8 +25,12 @@ final class AdminController extends AbstractController
     }
 
     #[Route('/', name: 'dashboard')]
-    public function dashboard(): Response
+    public function dashboard(Security $security): Response
     {
+        if ($security->isGranted('ROLE_MASTER')) {
+            return $this->redirectToRoute('app_hero_index');
+        }
+
         return $this->render('admin/dashboard.html.twig');
     }
 
