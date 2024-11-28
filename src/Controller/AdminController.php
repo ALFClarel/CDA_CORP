@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\MasterOfDestiny;
 use App\Form\MasterOfDestinyType;
+use App\Repository\HeroRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use App\Repository\MasterOfDestinyRepository;
+use App\Repository\MissionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -25,13 +27,24 @@ final class AdminController extends AbstractController
     }
 
     #[Route('/', name: 'dashboard')]
-    public function dashboard(Security $security): Response
+    public function dashboard(Security $security, MasterOfDestinyRepository $MODRepository, HeroRepository $heroRepository,MissionRepository $missionRepository): Response
     {
-        if ($security->isGranted('ROLE_MASTER')) {
+
+        $MODNumber = $MODRepository->count([]); 
+        $heroNumber = $heroRepository->count([]); 
+        $missionNumber = $missionRepository->count([]); 
+
+        if ($security->isGranted('ROLE_MASTER') && !$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_hero_index');
         }
-
-        return $this->render('admin/dashboard.html.twig');
+        if ($security->isGranted('ROLE_HERO') && !$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_mission_index');
+        }
+        return $this->render('admin/dashboard.html.twig', [
+            'MODNumber' => $MODNumber,
+            'heroNumber' => $heroNumber,
+            'missionNumber' =>  $missionNumber
+        ]);
     }
 
     #[Route('/MODIndex' ,name: 'app_mod_index', methods: ['GET'])]

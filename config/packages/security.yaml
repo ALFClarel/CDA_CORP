@@ -12,9 +12,13 @@ security:
             entity:
                 class: App\Entity\MasterOfDestiny
                 property: pseudo
+        hero_provider:
+            entity:
+                class: App\Entity\Hero
+                property: pseudo
         list_of_provider:
             chain:
-                providers: [admin_provider, mod_provider]
+                providers: [admin_provider, mod_provider, hero_provider]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -28,6 +32,7 @@ security:
                 enable_csrf: true
             logout:
                 path: app_logout
+                target: app_login
             custom_authenticator: App\Security\LoginAuthenticator
             entry_point: form_login
 
@@ -38,8 +43,6 @@ security:
                 # by default, the feature is enabled by checking a checkbox in the
                 # login form, uncomment the following line to always enable it.
                 #always_remember_me: true
-                # where to redirect after logout
-                # target: app_any_route
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -54,7 +57,7 @@ security:
     access_control:
         - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/hero, roles: ROLE_MASTER }
-
+        - { path: ^/hero, roles: IS_AUTHENTICATED_FULLY }
 when@test:
     security:
         password_hashers:

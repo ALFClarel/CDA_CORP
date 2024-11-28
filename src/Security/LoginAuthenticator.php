@@ -41,7 +41,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         return new Passport(
         new UserBadge($pseudo, function ($userIdentifier) {
             // Recherche l'utilisateur dans plusieurs providers
-            foreach (['admin_provider', 'mod_provider'] as $providerKey) {
+            foreach (['admin_provider', 'mod_provider', 'hero_provider'] as $providerKey) {
                 try {
                     $provider = $this->userProviderResolver->getProvider($providerKey);
                     return $provider->loadUserByIdentifier($userIdentifier);

@@ -25,6 +25,7 @@ services:
             $serviceLocator: !service_locator
                 admin_provider: '@security.user.provider.concrete.admin_provider'
                 mod_provider: '@security.user.provider.concrete.mod_provider'
+                hero_provider: '@security.user.provider.concrete.hero_provider'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

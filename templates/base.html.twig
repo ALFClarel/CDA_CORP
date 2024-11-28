@@ -45,6 +45,7 @@
                     {% endif %}
                     
                     <li class="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 font-bold">GESTION HERO</li>
+                    {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_MASTER") %}
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
                         <a class="py-3 flex items-center" href="{{ path('app_hero_index') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -55,6 +56,7 @@
                         Héros
                         </a>
                     </li>
+                    {% endif %}
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
                         <a class="py-3 flex items-center" href="{{ path('app_mission_index') }}">
                         
