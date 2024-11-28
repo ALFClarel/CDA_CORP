@@ -21,12 +21,13 @@ class TeamType extends AbstractType
             ])
             ->add('leader', EntityType::class, [
                 'class' => Hero::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('members', EntityType::class, [
                 'class' => Hero::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true, // Utilise des cases à cocher pour la sélection multiple
             ])
         ;
     }

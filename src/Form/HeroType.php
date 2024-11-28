@@ -35,13 +35,13 @@ class HeroType extends AbstractType
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
-                            'application/pdf', // Include appropriate mime types for your use case
-                            'application/x-pdf',
                         ],
                         'mimeTypesMessage' => 'Veuillez entrer un fichier valide',
                     ])
                 ],
             ])
+            ->add('pseudo')
+            ->add('password')
             // ...
         
             ->add('createdAt', null, [

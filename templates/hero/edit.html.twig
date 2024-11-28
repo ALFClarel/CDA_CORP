@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Edit Hero</h1>
 
-    {{ include('hero/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('hero/_form.html.twig', {'button_label': 'Update', 'button_type': 'submit'}) }}
 
     <a href="{{ path('app_hero_index') }}">back to list</a>
 
