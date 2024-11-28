@@ -4,21 +4,12 @@
 
 {% block body %}
 <p class="flex justify-center w-full gap-2 pt-4 font-extrabold text-2xl md:text-3xl">
-            <span>Les Maîtres de La Destinée</span>
+    <span>Les Maîtres de La Destinée</span>
+    <svg class="w-8 h-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"></path></svg>
+</p>
 
-            <svg class="w-8 h-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z">
-                </path>
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z">
-                </path>
-            </svg>
-        </p>
-        {% for master_of_destiny in master_of_destinies %}
-    <div class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-10 bg-white shadow-xl rounded-lg text-gray-900">
-        
+{% for master_of_destiny in master_of_destinies %}
+    <div class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-10 bg-white shadow-xl rounded-lg text-gray-900"> 
         <div class="rounded-t-lg h-32 overflow-hidden">
             <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'>
         </div>
@@ -40,13 +31,10 @@
         </ul>
         <div class="p-4 border-t mx-8 mt-2">
             <a class="w-max block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2" href="{{ path('admin_app_mod_show', {'id': master_of_destiny.id}) }}">Voir Plus</a>
-        </div>
-        
+        </div>        
     </div>
-    {% endfor %}
-        <a class="mt-5 w-max block mx-auto rounded-full bg-blue-900 hover:shadow-lg font-semibold text-white px-6 py-2" href="{{ path('admin_app_mod_new') }}">Créer un maître</a>
+{% endfor %}
 
-
-</html>
+<a class="mt-5 w-max block mx-auto rounded-full bg-blue-900 hover:shadow-lg font-semibold text-white px-6 py-2" href="{{ path('admin_app_mod_new') }}">Créer un maître</a>
 
 {% endblock %}

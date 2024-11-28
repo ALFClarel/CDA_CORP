@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New MasterOfDestiny{% endblock %}
+{% block title %}MasterOfDestiny{% endblock %}
 
 {% block body %}
-    <h1>Create new MasterOfDestiny</h1>
-
+    <h1 class="text-center text-2xl text-black mb-5">Create new MasterOfDestiny</h1>
     {{ include('master_of_destiny/_form.html.twig') }}
-
-    <a href="{{ path('admin_app_mod_index') }}">back to list</a>
 {% endblock %}

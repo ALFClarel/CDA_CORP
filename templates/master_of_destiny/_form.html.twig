@@ -1,4 +1,23 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">   
+      <header>
+        <img class="w-20 mx-auto mb-5" src="https://img.icons8.com/fluent/344/year-of-tiger.png" />
+      </header>   
+        <div>
+          {{form_row(form.name)}}
+        </div>
+        <div>
+          {{form_row(form.pseudo)}}
+        </div>
+        <div>
+          {{form_row(form.password)}}
+        </div>
+        <div>    
+            <button type="submit" class="w-full bg-indigo-700 hover:bg-pink-700 text-white font-bold py-2 px-4 mb-6 rounded">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+      <footer class="mb-5">
+        <a class="text-indigo-700 hover:text-pink-700 text-sm float-left" href="{{ path('admin_app_mod_index') }}">Annuler</a>
+      </footer>   
+    </div>
+</div>
 {{ form_end(form) }}
