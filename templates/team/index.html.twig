@@ -3,37 +3,31 @@
 {% block title %}Team index{% endblock %}
 
 {% block body %}
-    <h1>Team index</h1>
+    <h1 class="text-center text-3xl font-semibold mb-6">Index des Équipes</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>IsActive</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="ml-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {% for team in teams %}
-            <tr>
-                <td>{{ team.id }}</td>
-                <td>{{ team.name }}</td>
-                <td>{{ team.isActive ? 'Yes' : 'No' }}</td>
-                <td>{{ team.createdAt ? team.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
-                    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
+                <img class="w-full h-48 object-cover" src="{{ asset('images/bard.jpg') }}" alt="Team image">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">{{ team.name }}</h2>
+                    <p class="text-gray-600 mt-2">{{ team.isActive ? 'Active' : 'Inactive' }}</p>
+                    <p class="text-gray-500 mt-1">
+                        Créer à: {{ team.createdAt ? team.createdAt|date('Y-m-d H:i:s') : 'N/A' }}
+                    </p>
 
-    <a href="{{ path('app_team_new') }}">Create new</a>
+                    <div class="mt-4 flex justify-between items-center">
+                        <a href="{{ path('app_team_show', {'id': team.id}) }}" class="text-indigo-600 hover:text-indigo-800">Voir plus</a>
+                        <a href="{{ path('app_team_edit', {'id': team.id}) }}" class="text-indigo-600 hover:text-indigo-800">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-span-full text-center">
+                <p class="text-gray-500">Aucune Équipe</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('app_team_new') }}" class="ml-5 mt-6 inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Créer une Équipe</a>
 {% endblock %}

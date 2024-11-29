@@ -1,4 +1,42 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit" class="btn">{{ button_label|default('Save') }}</button>
+<div class="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">   
+      <header>
+        <img class="w-20 mx-auto mb-5" src="https://img.icons8.com/?size=100&id=78226&format=png&color=000000" />
+      </header>   
+        <div>
+          {{form_row(form.name)}}
+        </div>
+        <div>
+          {{form_row(form.alterEgo)}}
+        </div>
+        <div>
+          {{form_row(form.equipment)}}
+        </div>
+        <div>
+          {{form_row(form.Available)}}
+        </div>
+        <div>
+          {{form_row(form.energyLevel)}}
+        </div>
+        <div>
+          {{form_row(form.biography)}}
+        </div>
+        <div>
+          {{form_row(form.image_name)}}
+        </div>
+        <div>
+          {{form_row(form.pseudo)}}
+        </div>
+        <div>
+          {{form_row(form.password)}}
+        </div>
+        <div>
+          {{form_row(form.createdAt)}}
+        </div>
+        <div>    
+            <button type="submit" class="bg-green-500 rounded-md p-2 text-white ml-2 mr-4 mb-2">{{ button_label|default('Enregistrer') }}</button>
+            <a class="text-indigo-700 hover:text-pink-700 text-sm " href="{{ path('admin_app_mod_index') }}">Annuler</a>
+        </div>
+    </div>
+</div>
 {{ form_end(form) }}

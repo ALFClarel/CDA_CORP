@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Hero{% endblock %}
+{% block title %}Édition Hero{% endblock %}
 
 {% block body %}
-    <h1>Edit Hero</h1>
+    <h1>Édition Hero</h1>
 
-    {{ include('hero/_form.html.twig', {'button_label': 'Update', 'button_type': 'submit'}) }}
+    {{ include('hero/_form.html.twig', {'button_label': 'Mettre à jour', 'button_type': 'submit'}) }}
 
-    <a href="{{ path('app_hero_index') }}">back to list</a>
+    <a href="{{ path('app_hero_index') }}">Retour à la liste</a>
 
     {{ include('hero/_delete_form.html.twig') }}
 {% endblock %}

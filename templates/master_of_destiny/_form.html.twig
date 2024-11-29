@@ -1,7 +1,8 @@
 {{ form_start(form) }}
-<div class="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">   
+
+    <div class="w-full max-w-xs m-auto bg-amber-100 rounded p-5">   
       <header>
-        <img class="w-20 mx-auto mb-5" src="https://img.icons8.com/fluent/344/year-of-tiger.png" />
+        <img class="w-20 mx-auto mb-5" src="https://img.icons8.com/?size=100&id=78242&format=png&color=000000" />
       </header>   
         <div>
           {{form_row(form.name)}}
@@ -13,11 +14,12 @@
           {{form_row(form.password)}}
         </div>
         <div>    
-            <button type="submit" class="w-full bg-indigo-700 hover:bg-pink-700 text-white font-bold py-2 px-4 mb-6 rounded">{{ button_label|default('Enregistrer') }}</button>
+            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 mb-6 rounded">{{ button_label|default('Enregistrer') }}</button>
         </div>
       <footer class="mb-5">
-        <a class="text-indigo-700 hover:text-pink-700 text-sm float-left" href="{{ path('admin_app_mod_index') }}">Annuler</a>
+        <a class="text-amber-600 hover:text-pink-700 text-sm float-left" href="{{ path('admin_app_mod_index') }}">Annuler</a>
       </footer>   
     </div>
+</div>
 </div>
 {{ form_end(form) }}

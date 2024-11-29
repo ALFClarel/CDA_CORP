@@ -17,30 +17,30 @@ class MasterOfDestinyType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom: ',
                 'label_attr' => [
-                    'class' => 'block mb-2 text-indigo-500', 
+                    'class' => 'block mb-2 text-amber-600', 
                 ],
                 'attr' => [
-                    'class' => 'w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300', 
+                    'class' => 'w-full p-2 mb-6 text-indigo-700 border-b-2 border-amber-600 outline-none focus:bg-gray-300', 
                     'placeholder' => 'Entrez le nom du maître',
                 ],
             ])
             ->add('pseudo', TextType::class, [
                 'label' => 'Pseudo: ',
                 'label_attr' => [
-                    'class' => 'block mb-2 text-indigo-500', 
+                    'class' => 'block mb-2 text-amber-600', 
                 ],
                 'attr' => [
-                    'class' => 'w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300', 
+                    'class' => 'w-full p-2 mb-6 text-indigo-700 border-b-2 border-amber-600 outline-none focus:bg-gray-300', 
                     'placeholder' => 'Entrez le pseudo de connexion',
                 ],
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe: ',
                 'label_attr' => [
-                    'class' => 'block mb-2 text-indigo-500', 
+                    'class' => 'block mb-2 text-amber-600', 
                 ],
                 'attr' => [
-                    'class' => 'w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300', 
+                    'class' => 'w-full p-2 mb-6 text-amber-600 border-b-2 border-amber-600 outline-none focus:bg-gray-300', 
                     'placeholder' => 'Entrez le mot de passe',
                 ],
             ])

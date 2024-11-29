@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hero index{% endblock %}
+{% block title %}Index des Héros{% endblock %}
 
 {% block body %}
 
@@ -85,11 +85,11 @@
         </div>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Aucun héro pour le moment</td>
             </tr>
         {% endfor %}
     </div>
     
 </div>
-<a class="bg-green-500 hover:bg-green-800 p-2 rounded-md ml-4 mt-5" href="{{ path('app_hero_new') }}">Create new</a>    
+<a class="bg-green-500 hover:bg-green-800 p-2 rounded-md ml-4 mt-5" href="{{ path('app_hero_new') }}">Nouveau héro</a>    
 {% endblock %}
